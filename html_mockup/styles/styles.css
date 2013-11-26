@@ -1,0 +1,35 @@
+#getstarted {
+	float: left;
+}
+
+
+#login {
+	float: right;
+}
+
+
+h1, .blurb {
+	text-align: center;
+}
+
+
+#maincontainer {
+	margin: 0 auto;
+	margin-top: 5em;
+	width: 800px;
+	background-color: #ccc;
+	vertical-align: middle;
+}
+
+
+#maincontainer:after {
+	content: " ";
+	display: block;
+	height: 0;
+	clear: both;
+}
+
+
+body {
+	background-color: #eee;
+}
