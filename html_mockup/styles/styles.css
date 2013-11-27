@@ -11,6 +11,7 @@ body {
 
 #login {
 	float: right;
+	text-align: right;
 }
 
 
@@ -57,11 +58,15 @@ h2 {
 .oauth_button {
 	border: 1px solid black;
 	text-decoration: none;
-	color: #43307f;
+	color: white;
 	margin: 2pt 0 0 0;
 	display: inline-block;
 	font-size: 12pt;
 	width: 12em;
+	background-image: url("../img/start_button.png"); /*placeholder*/
+	background-position: -14px -14px; /*placeholder*/
+	background-repeat: repeat; /*placeholder*/
+	text-align: left;
 }
 
 
@@ -74,7 +79,7 @@ h2 {
 	display: block;
 	width: 240px;
 	height: 120px;
-	background-image: url("../img/start_button.png") ;
+	background-image: url("../img/start_button.png"); /*placeholder*/
 	background-repeat: no-repeat;
 	text-align: center;
 	display: table-cell;
