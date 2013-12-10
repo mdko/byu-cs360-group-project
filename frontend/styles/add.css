@@ -1,0 +1,17 @@
+input[type=number] {
+	width: 64px;
+}
+
+
+label {
+	display: inline-block;
+	width: 175px;
+	text-align: right;
+	margin: 4px;
+}
+
+
+input[type=submit] {
+	margin: 4px;
+	margin-left: 188px;
+}
