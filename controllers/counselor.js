@@ -1,4 +1,4 @@
-
+var db = require('../models');
 /*
  * GET home page. (right now it is getting all pages, but we might split this up if we want later)
  */
@@ -12,6 +12,8 @@
 
 exports.index = function(req, res){
 	// Do logic stuff here
+	// An example of using the database. Will put this is the post requests
+	db.User.create({username: 'Han Solo'});
 	res.render('index.html');
 };
 

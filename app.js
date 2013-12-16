@@ -1,12 +1,12 @@
 /**
  * Module dependencies.
  */
-
 var express = require('express');
 var counselor = require('./controllers/counselor'); // these were called routes originally
 // var user = require('./controllers/user');
 var http = require('http');
 var path = require('path');
+var db = require('./models');
 
 var app = express();
 
@@ -28,6 +28,7 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+// GETs
 app.get('/', counselor.index);
 app.get('/intro', counselor.intro)
 app.get('/add', counselor.add);
@@ -35,8 +36,16 @@ app.get('/view', counselor.view);
 app.get('/register', counselor.register);
 app.get('/login', counselor.login);
 
+// POSTs
+
 //app.get('/users', user.list);	// from original, left to study/understand framework
 
-http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
+db.sequelize.sync({force:true}).complete(function(err) {
+	if (err) {
+		throw err
+	} else {
+		http.createServer(app).listen(app.get('port'), function(){
+		  console.log('Express server listening on port ' + app.get('port'));
+		});
+	}
 });
