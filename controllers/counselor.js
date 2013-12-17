@@ -49,7 +49,7 @@ exports.additem = function(req, res) {
 
 				var food = db.StoredFood.create({
 					food: req.body.food,
-			 		expirationDate: req.body.expiration,
+			 		expirationDate: req.body.expiration,	// TODO fix this to Datetime (mysql) or Timestamp (postgresql)
 			 		amount: req.body.amount,
 			 		measurement: req.body.unit,
 			 		storageLocation: req.body.location,

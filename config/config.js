@@ -10,13 +10,13 @@ module.exports = {
     facebook: {
       clientID: "186002698272202",
       clientSecret: "32e7dd40a09080aac10fa85bf8eead5b",
-      callbackURL: "http://localhost:3000/auth/facebook/callback"
+      callbackURL: "http://localhost:5000/auth/facebook/callback"
     },
     google: {
       clientID: "APP_ID",
       clientSecret: "APP_SECRET",
-      callbackURL: "http://localhost:3000/auth/google/callback",
-      realm: "http://localhost:3000"
+      callbackURL: "http://localhost:5000/auth/google/callback",
+      realm: "http://localhost:5000"
     }
   },
   production: {

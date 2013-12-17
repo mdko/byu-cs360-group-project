@@ -9,7 +9,7 @@ var flash = require('connect-flash')
 module.exports = function (app, passport, config) {
 
 	app.configure( function() {
-		app.set('port', process.env.PORT || 3000);
+		app.set('port', process.env.PORT || 5000);
 		app.set('views', config.root + '/views');
 		app.engine('html', require('ejs').renderFile);
 		app.use(express.favicon());
