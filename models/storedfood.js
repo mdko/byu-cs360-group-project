@@ -16,8 +16,8 @@ module.exports = function(sequelize, DataTypes) {
     	allowNull: false
     },
     measurement: {
-    	type: DataTypes.ENUM,
-    	values: ['gallons','pounds','grams', 'ounces', 'liters'],
+    	type: DataTypes.TEXT,
+    	//values: ['gallons','pounds','grams', 'ounces', 'liters'],
     	allowNull: false
     },
     storageLocation: {

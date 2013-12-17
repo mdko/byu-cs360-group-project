@@ -22,17 +22,20 @@ if (!global.hasOwnProperty('db')) {
   global.db = {
     Sequelize:    Sequelize,
     sequelize:    sequelize,
-    User:         sequelize.import(__dirname + '/user'),
-    StoredFood:   sequelize.import(__dirname + '/storedfood')
-
-    // add your other models (corresponding to our tables) here
+    FacebookUser: sequelize.import(__dirname + '/facebookuser'),
+    StoredFood:   sequelize.import(__dirname + '/storedfood')//,
+    //GoogleUser:   sequelize.import(__dirname + '/googleuser'),
+    //EmailUser:    sequelize.import(__dirname + '/emailuser')
   }
  
   /*
-    Associations can be defined here. E.g. like this:
-    global.db.User.hasMany(global.db.SomethingElse)
+    Associations can be defined here.
   */
-  global.db.User.hasMany(global.db.StoredFood)
+  global.db.FacebookUser.hasMany(global.db.StoredFood)
+  global.db.StoredFood.belongsTo(global.db.FacebookUser)
+  // global.db.GoogleUser.hasMany(global.db.StoredFood)
+  // global.db.EmailUser.hasMany(global.db.StoredFood)
+
 }
  
 module.exports = global.db

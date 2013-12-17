@@ -1,5 +1,4 @@
 var db = require('../models/db');
-var passport = require('passport');
 
 /*
  * GET pages. (right now it is getting all pages, but we might split this up if we want later)
@@ -8,6 +7,10 @@ var passport = require('passport');
 exports.index = function(req, res){
 	res.render('index.html');
 };
+
+exports.home = function(req, res) {
+	res.render('home.html');
+}
 
 exports.intro = function(req, res) {
 	res.render('intro.html');
@@ -26,50 +29,48 @@ exports.register = function(req, res) {
 }
 
 exports.loginpage = function(req, res) {
-	// passport.authenticate('local', 
-	// 	res.redirect('')
 	res.render('login.html');
 }
 
-exports.home = function(req, res) {
-	res.render('home.html');
+exports.schedules = function(req, res) {
+	res.render('schedules.html');
 }
+
 /*
  * POST
  */
 exports.additem = function(req, res) {
-	// Do logic stuff here
-	// An example of using the database. Will put this is the post requests
-	db.User.create({
-		email: 'Han Solo', 
-		passwordhash: '1234', 
-		salt: '12#21$1!@'
-	})
-	.complete(function(err, user){
-	});
+	if (!req.user) {
 
-	// res.send(req.body.food);
-	// TODO figure out how to get attached user
-	// db.StoredFood.create({
-	// 	food: req.body.food,
- //    	expirationDate: req.body.expiration,
- //    	amount: req.body.amount,
- //    	measurement: 'pounds',
- //    	storageLocation: req.body.location,
-	// })
-	// .complete(function(err, user){
+	} else {
 
-	// });
+		db.FacebookUser.find( {facebookid: req.user.facebookid} ).complete(function(err, user) {
+			if (!err && user) {
+
+				var food = db.StoredFood.create({
+					food: req.body.food,
+			 		expirationDate: req.body.expiration,
+			 		amount: req.body.amount,
+			 		measurement: req.body.unit,
+			 		storageLocation: req.body.location,
+			 		FacebookUserId: user.facebookid
+				}).success(function(john) {
+  					console.log('Saved foods to table');
+				});
+			}
+		});
+	}
+	res.render('add.html')	// TODO either update something on the screen or tell the user it was successfully saved (add something to the response?)
 }
 
-exports.registeremail = function(req, res) {
+// exports.googlecallback = function(req, res){
+// 	res.render('home.html')
+// }
 
+//TODO review difference between redirecting and rendering here...
+//We want to save the fact that the user is now authenticated
+exports.facebookcallback = function(req, res) {
+	res.redirect('/home?id='+req.user.facebookid)
+	//res.send(req.user);	// user information is now stored in this!
+	// res.render('home.html')
 }
-
-exports.loginattempt = function(req, res) {
-
-}
-
-// exports.loginattempt = passport.authenticate('local', { successRedirect: '/home',
-//                                    failureRedirect: '/login',
-//                                    failureFlash: true });

@@ -3,36 +3,37 @@ var path = require('path')
 
 module.exports = {
   development: {
-    db: 'mongodb://localhost/noobjs_dev',
     root: rootPath,
     app: {
-      name: 'Nodejs Express Mongoose Demo'
+      name: 'Food Storage Counselor'
     },
     facebook: {
-      clientID: "APP_ID",
-      clientSecret: "APP_SECRET",
+      clientID: "186002698272202",
+      clientSecret: "32e7dd40a09080aac10fa85bf8eead5b",
       callbackURL: "http://localhost:3000/auth/facebook/callback"
-    },
-    twitter: {
-      clientID: "CONSUMER_KEY",
-      clientSecret: "CONSUMER_SECRET",
-      callbackURL: "http://localhost:3000/auth/twitter/callback"
-    },
-    github: {
-      clientID: 'APP_ID',
-      clientSecret: 'APP_SECRET',
-      callbackURL: 'http://localhost:3000/auth/github/callback'
     },
     google: {
       clientID: "APP_ID",
       clientSecret: "APP_SECRET",
-      callbackURL: "http://localhost:3000/auth/google/callback"
-    },
-    linkedin: {
-      clientID: "CONSUMER_KEY",
-      clientSecret: "CONSUMER_SECRET",
-      callbackURL: "http://localhost:3000/auth/linkedin/callback"
+      callbackURL: "http://localhost:3000/auth/google/callback",
+      realm: "http://localhost:3000"
     }
   },
-  production: {}
+  production: {
+    root: rootPath,
+    app: {
+      name: 'Food Storage Counselor'
+    },
+    facebook: {
+      clientID: "327329327408053",
+      clientSecret: "f804efe0547820565d1d00e41fb2cb0c",
+      callbackURL: "http://fscounselor.herokuapp.com/auth/facebook/callback"
+    },
+    google: {
+      clientID: "APP_ID",
+      clientSecret: "APP_SECRET",
+      callbackURL: "http://fscounselor.herokuapp.com/auth/google/callback",
+      realm: "http://fscounselor.herokuapp.com"
+    }
+  }
 }
