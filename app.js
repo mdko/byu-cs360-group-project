@@ -7,7 +7,7 @@ var express = require('express')
   , db = require('./models/db');
 
 // Load configurations
-var env = 'development' || process.env.NODE_ENV
+var env = process.env.NODE_ENV || 'development'
   , config = require('./config/config')[env]
 console.log('Using ' + env + ' environment')
 
