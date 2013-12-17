@@ -7,9 +7,9 @@ var express = require('express')
   , db = require('./models/db');
 
 // Load configurations
-// if test env, load example file
-var env = 'development'// || process.env.NODE_ENV
+var env = 'development' || process.env.NODE_ENV
   , config = require('./config/config')[env]
+console.log('Using ' + env + ' environment')
 
 require('./config/passport')(passport, db, config);
 
