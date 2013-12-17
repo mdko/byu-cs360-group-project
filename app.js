@@ -6,7 +6,7 @@ var counselor = require('./controllers/counselor'); // these were called routes 
 // var user = require('./controllers/user');
 var http = require('http');
 var path = require('path');
-var db = require('./models');
+var db = require('./models/db');
 
 var app = express();
 
@@ -17,8 +17,8 @@ app.set('views', path.join(__dirname, 'views'));
 app.engine('html', require('ejs').renderFile);
 app.use(express.favicon());
 app.use(express.logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded());
+app.use(express.json());			// equivalent to app.use(express.bodyParser())
+app.use(express.urlencoded());		// "	"
 app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
@@ -37,10 +37,11 @@ app.get('/register', counselor.register);
 app.get('/login', counselor.login);
 
 // POSTs
+app.post('/add', counselor.additem);
 
 //app.get('/users', user.list);	// from original, left to study/understand framework
 
-db.sequelize.sync({force:true}).complete(function(err) {
+db.sequelize.sync({force:false}).complete(function(err) {
 	if (err) {
 		throw err
 	} else {

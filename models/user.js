@@ -2,6 +2,17 @@
 
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define("User", {
-    username: DataTypes.STRING
+    email: { 
+    	type: DataTypes.STRING,
+    	allowNull: false
+    },
+    passwordhash: { 
+    	type: DataTypes.TEXT,
+    	allowNull: false
+    },
+    salt: {
+    	type: DataTypes.TEXT,
+    	allowNull: false
+  	}
   });
 };
