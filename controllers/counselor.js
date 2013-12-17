@@ -1,14 +1,9 @@
 var db = require('../models/db');
-/*
- * GET home page. (right now it is getting all pages, but we might split this up if we want later)
- */
+var passport = require('passport');
 
-/** This is how the 'express <name>' default installer does
- * 	it, routing a .jade file
+/*
+ * GET pages. (right now it is getting all pages, but we might split this up if we want later)
  */
-// exports.index = function(req, res){
-//   res.render('index', { title: 'Express' });
-// };
 
 exports.index = function(req, res){
 	res.render('index.html');
@@ -30,33 +25,51 @@ exports.register = function(req, res) {
 	res.render('register.html');
 }
 
-exports.login = function(req, res) {
+exports.loginpage = function(req, res) {
+	// passport.authenticate('local', 
+	// 	res.redirect('')
 	res.render('login.html');
 }
 
+exports.home = function(req, res) {
+	res.render('home.html');
+}
 /*
  * POST
  */
 exports.additem = function(req, res) {
 	// Do logic stuff here
 	// An example of using the database. Will put this is the post requests
-	// db.User.create({
-	// 	email: 'Han Solo', 
-	// 	passwordhash: '1234', 
-	// 	salt: '12#21$1!@'
-	// })
-	// .complete(function(err, user){
-	// });
-
-	// res.send(req.body.food);
-	db.StoredFood.create({
-		food: req.body.food,
-    	expirationDate: req.body.expiration,
-    	amount: req.body.amount,
-    	measurement: 'pounds',
-    	storageLocation: req.body.location,
+	db.User.create({
+		email: 'Han Solo', 
+		passwordhash: '1234', 
+		salt: '12#21$1!@'
 	})
 	.complete(function(err, user){
-
 	});
+
+	// res.send(req.body.food);
+	// TODO figure out how to get attached user
+	// db.StoredFood.create({
+	// 	food: req.body.food,
+ //    	expirationDate: req.body.expiration,
+ //    	amount: req.body.amount,
+ //    	measurement: 'pounds',
+ //    	storageLocation: req.body.location,
+	// })
+	// .complete(function(err, user){
+
+	// });
 }
+
+exports.registeremail = function(req, res) {
+
+}
+
+exports.loginattempt = function(req, res) {
+
+}
+
+// exports.loginattempt = passport.authenticate('local', { successRedirect: '/home',
+//                                    failureRedirect: '/login',
+//                                    failureFlash: true });

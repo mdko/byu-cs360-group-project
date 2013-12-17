@@ -9,7 +9,7 @@
 		<!-- begin navbar -->
 		<div id="navbar">
 			<div id="navleft">
-				<a href="/" class="navbutton">Home</a>
+				<a href="home" class="navbutton">Home</a>
 				<a href="add" class="navbutton">Add Food</a>
 				<a href="view" class="navbutton">View Food</a>
 				<!--<a href="schedules.html" class="navbutton">Schedules</a>-->
@@ -22,9 +22,36 @@
 		<!-- end navbar -->
 
 		<div id="maincontainer">
-			<h1>Register</h1>
+			<h1>Sign Up For Free</h1>
 
-			[Stuff goes here...]
+			<div class="centered" >
+				<div id="register2">
+					<!-- begin register form -->
+					<form id="register_email_form" action="register-account" method="post">
+						<label for="email">Email</label>
+						<input type="email" name="email" id="email" placeholder="user@example.com" autofocus />
+						<br />
+						<label for="password">Password</label>
+						<input type="password" name="password" id="password"
+							placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;" />
+						<br />
+						<label for="confirm-password">Confirm Password</label>
+						<input type="password" name="confirm-password" id="password"
+							placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;" />
+						<br />
+						<input type="submit" value="Register with my email" />
+					</form>
+					<br />
+					<h2 id="register-alt">Or register with</h2>
+					<br />
+					<a id="reg_fb" class="oauth_button" href="#facebook">
+						<img src="/images/facebook_white.png" width="20" height="20" alt="Facebook logo" />
+						Facebook</a> 
+					<br />
+					<a id="reg_g" class="oauth_button" href="#google">Google</a>
+					<!-- end register form -->
+				</div>
+			</div>
 		</div>
 	</body>
 </html>

@@ -10,8 +10,11 @@ body {
 	float: left;
 }
 
+#register-alt {
+	float: left;
+}
 
-#login, #login2{
+#login, #login2, #register, #register2 {
 	float: right;
 	text-align: right;
 }
@@ -66,7 +69,7 @@ h2 {
 }
 
 
-#login_form {
+#login_form, #register_email_form {
 	margin-bottom: 1em;
 }
 
@@ -141,7 +144,7 @@ img {
 }
 
 
-#login2 {
+#login2, #register2 {
 	float: none;
 	display: inline-block;
 }
