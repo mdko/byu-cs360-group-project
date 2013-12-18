@@ -13,7 +13,7 @@
 	    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 	    <!-- Load jQuery UI Main JS  -->
 	    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-	    
+
 	    <!-- Load SCRIPT.JS which will create datepicker for input field  -->
 	    <script src="/javascripts/calendar.js"></script>
 	    <script>
@@ -50,7 +50,7 @@
 				<input type="text" name="food" id="food" placeholder="e.g., sugar" />
 				<br />
 				<label for="amount">Amount:</label>
-				<input type="number" name="amount" id="amount" placeholder="5" pattern="[0-9]*\.?[0-9]*" />
+				<input type="number" name="amount" id="amount" placeholder="5" />
 				<select id="units" onchange="change()">
 				  <option value="pounds">pounds</option>
 				  <option value="gallons">gallons</option>
@@ -71,8 +71,8 @@
 				<label for="location">Storage Location:</label>
 				<input type="text" name="location" id="location" placeholder="e.g., garage" />
 				<br />
-				<label for="exmonth">Expiration Date:</label>
-				<input type="text" name="expiration" id="datepicker" /></p>
+				<label for="datepicker">Expiration Date:</label>
+				<input type="text" name="expiration" id="datepicker" />
 				<br />
 				<input type="submit" value="Add Food" />
 			</form>
