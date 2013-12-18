@@ -15,7 +15,10 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.3.1 r9886"
-   sodipodi:docname="New document 1">
+   sodipodi:docname="getstarted.svg"
+   inkscape:export-filename="/home/ansq/School/13F/CS360/WebApp/cs360-group-project/public/images/getstarted.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
   <defs
      id="defs4">
     <linearGradient
@@ -40,6 +43,16 @@
        r="120"
        gradientTransform="matrix(0.99583333,0,0,0.99166667,0.5,873.36218)"
        gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3755"
+       id="linearGradient3802"
+       x1="-97"
+       y1="912.36212"
+       x2="-97"
+       y2="870.36212"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.0060241,0,0,1,-96.415663,0)" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -59,7 +72,8 @@
      inkscape:window-height="693"
      inkscape:window-x="0"
      inkscape:window-y="25"
-     inkscape:window-maximized="1" />
+     inkscape:window-maximized="1"
+     inkscape:object-nodes="true" />
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -85,5 +99,16 @@
        x="0.5"
        y="932.86212"
        ry="23.799999" />
+    <rect
+       style="fill:url(#linearGradient3802);fill-opacity:1;stroke:none"
+       id="rect3782"
+       width="1"
+       height="42"
+       x="-97"
+       y="870.36212"
+       ry="0"
+       inkscape:export-filename="/home/ansq/School/13F/CS360/WebApp/cs360-group-project/public/images/navbarback.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
   </g>
 </svg>

@@ -3,6 +3,7 @@ body {
 	font-size: 14pt;
 	width: 800px;
 	margin: 8px auto;
+	color: #112;
 }
 
 
@@ -85,9 +86,8 @@ h2 {
 	font-size: 12pt;
 	width: 192px;
 	height: 20px;
-	background-image: url("/images/start_button.png"); /*placeholder*/
-	background-position: -14px -14px; /*placeholder*/
-	background-repeat: repeat; /*placeholder*/
+	background-image: url("/images/oathback.png");
+	background-repeat: repeat;
 	text-align: left;
 }
 
@@ -159,11 +159,6 @@ h2 {
 	width: 240px;
 	margin: 2em;
 
-}
-
-
-#intro_end {
-	/*float: right;*/
 }
 
 
