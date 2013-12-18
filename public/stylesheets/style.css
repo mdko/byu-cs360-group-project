@@ -97,7 +97,7 @@ h2 {
 }
 
 
-#start_button {
+#start_button, .start_button {
 	display: block;
 	width: 240px;
 	height: 120px;
@@ -108,6 +108,11 @@ h2 {
 	vertical-align: middle;
 	text-decoration: none;
 	color: white;
+}
+
+
+.halfspaceafter {
+	padding-bottom: .5em;
 }
 
 
@@ -125,6 +130,7 @@ h2 {
 	border-top: 1px solid black;
 	border-bottom: 1px solid black;
 	padding: .5em;
+	max-height: 42px;
 }
 
 
@@ -137,15 +143,14 @@ h2 {
 
 
 .navbutton {
-	border-left: 1px solid black;
-	border-right: 1px solid black;
+	border: 1px solid black;
 	padding: .5em;
 	margin: 3pt;
-	background-image: url("/images/start_button.png"); /*placeholder*/
-	background-position: -14px -14px; /*placeholder*/
-	background-repeat: repeat; /*placeholder*/
+	background-image: url("/images/navbarback.png");
 	color: white;
 	text-decoration: none;
+	font-size: 19px;
+	height: 42px;
 }
 
 
