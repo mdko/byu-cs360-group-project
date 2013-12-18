@@ -21,7 +21,22 @@ exports.add = function(req, res) {
 }
 
 exports.view = function(req, res) {
-	res.render('view.html');
+	///Query database for foods	
+	if (!req.user) {
+		console.log('No user currently logged-in')
+		res.render('view.html', {
+			allfoods: [],
+			message: 'You must log-in to store and view your foods'
+		})
+	} else {
+		console.log('Getting saved foods for logged-in user')
+		db.StoredFood.findAll( {where: {FacebookUserId: req.user.facebookid} }).success(function(foods) {
+			res.render('view.html', {
+				foods: foods,
+				message: ''
+			})
+		})
+	}
 }
 
 exports.register = function(req, res) {

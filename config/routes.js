@@ -13,8 +13,6 @@ module.exports = function (app, passport) {
 	app.get('/login', counselor.loginpage);
 	app.get('/schedules', counselor.schedules);
 
-	app.get('/auth/facebook/home', counselor.home); // TODO why is this necessary
-
 	// POSTs
 	app.post('/add', counselor.additem);
 

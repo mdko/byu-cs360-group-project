@@ -12,7 +12,7 @@
 				<a href="home" class="navbutton">Home</a>
 				<a href="add" class="navbutton">Add Food</a>
 				<a href="view" class="navbutton">View Food</a>
-				<!--<a href="schedules.html" class="navbutton">Schedules</a>-->
+				<a href="schedules" class="navbutton">Schedules</a>
 			</div>
 			<div id="navright">
 				<a href="login" class="navbutton">Log in</a>
@@ -22,9 +22,24 @@
 		<!-- end navbar -->
 
 		<div id="maincontainer">
-			<h1>View Food</h1>
-
-			[Stuff goes here...]
+			<h1>Food Storage Contents</h1>
+				<%= message %>
+				<% foods.forEach(function(entry) { %>
+					<div class="foodentry">
+						<div class="fooditem">
+							<%= entry.values.food %><br />
+							<%= entry.values.amount %> <%= entry.values.measurement %>
+						</div>
+						<div class="fooddetails">
+							Expires <%= entry.values.expirationDate %>.<br />
+							Current location: <%= entry.values.storageLocation %>
+						</div>
+						<div class="foodedit">
+							<a href="#edit" class="navbutton">Edit</a>
+							<a href="#remove" class="navbutton">Remove</a>
+						</div>
+					</div>
+				<% }) %>
 		</div>
 	</body>
 </html>

@@ -19,7 +19,6 @@ body {
 	text-align: right;
 }
 
-
 h1, .blurb {
 	text-align: center;
 }
@@ -42,6 +41,30 @@ h2 {
 	display: block;
 	height: 0;
 	clear: both;
+}
+
+
+
+.foodentry {
+	
+}
+
+.fooditem {
+	float:left;
+	margin: 10px;
+	padding: 10px;
+}
+
+.fooddetails {
+	float:center;
+	margin: 10px;
+	padding: 10px;
+}
+
+.foodedit {
+	float:right;
+	margin: 10px;
+	padding: 10px;
 }
 
 

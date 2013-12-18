@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "express": "3.4.7",
-    "jade": "*",
+    "jade": "~0.35.0",
     "ejs": "~0.8.5",
     "mysql": "~2.0.0-rc2",
     "sequelize": "~2.0.0-beta.2",
@@ -18,7 +18,8 @@
     "passport-local": "~0.1.6",
     "connect-flash": "~0.1.1",
     "passport-facebook": "~1.0.2",
-    "passport-google": "~0.3.0"
+    "passport-google": "~0.3.0",
+    "angular": "~1.2.2"
   },
   "engines": {
     "node": "0.10.x"
