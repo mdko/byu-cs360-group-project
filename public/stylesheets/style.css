@@ -57,7 +57,7 @@ h2 {
 }
 
 .fooddetails {
-	float:center;
+	/*float:center; center is not a valid value for float*/
 	margin: 10px;
 	padding: 10px;
 }
