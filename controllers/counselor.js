@@ -25,7 +25,7 @@ exports.view = function(req, res) {
 	if (!req.user) {
 		console.log('No user currently logged-in')
 		res.render('view.html', {
-			allfoods: [],
+			foods: [],
 			message: 'You must log-in to store and view your foods'
 		})
 	} else {
@@ -56,9 +56,9 @@ exports.schedules = function(req, res) {
  */
 exports.additem = function(req, res) {
 	if (!req.user) {
-
+		res.render()
 	} else {
-
+		console.log(req);
 		db.FacebookUser.find( {facebookid: req.user.facebookid} ).complete(function(err, user) {
 			if (!err && user) {
 
