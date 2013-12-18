@@ -3,6 +3,7 @@ body {
 	font-size: 14pt;
 	width: 800px;
 	margin: 8px auto;
+	color: #112;
 }
 
 
@@ -46,7 +47,7 @@ h2 {
 
 
 .foodentry {
-	
+
 }
 
 .fooditem {
@@ -56,7 +57,7 @@ h2 {
 }
 
 .fooddetails {
-	float:center;
+	/*float:center; center is not a valid value for float*/
 	margin: 10px;
 	padding: 10px;
 }
@@ -85,9 +86,8 @@ h2 {
 	font-size: 12pt;
 	width: 192px;
 	height: 20px;
-	background-image: url("/images/start_button.png"); /*placeholder*/
-	background-position: -14px -14px; /*placeholder*/
-	background-repeat: repeat; /*placeholder*/
+	background-image: url("/images/oathback.png");
+	background-repeat: repeat;
 	text-align: left;
 }
 
@@ -97,17 +97,22 @@ h2 {
 }
 
 
-#start_button {
+#start_button, .start_button {
 	display: block;
 	width: 240px;
 	height: 120px;
-	background-image: url("/images/start_button.png"); /*placeholder*/
+	background-image: url("/images/getstarted.png");
 	background-repeat: no-repeat;
 	text-align: center;
 	display: table-cell;
 	vertical-align: middle;
 	text-decoration: none;
 	color: white;
+}
+
+
+.halfspaceafter {
+	padding-bottom: .5em;
 }
 
 
@@ -125,6 +130,7 @@ h2 {
 	border-top: 1px solid black;
 	border-bottom: 1px solid black;
 	padding: .5em;
+	max-height: 42px;
 }
 
 
@@ -137,15 +143,14 @@ h2 {
 
 
 .navbutton {
-	border-left: 1px solid black;
-	border-right: 1px solid black;
+	border: 1px solid black;
 	padding: .5em;
 	margin: 3pt;
-	background-image: url("/images/start_button.png"); /*placeholder*/
-	background-position: -14px -14px; /*placeholder*/
-	background-repeat: repeat; /*placeholder*/
+	background-image: url("/images/navbarback.png");
 	color: white;
 	text-decoration: none;
+	font-size: 19px;
+	height: 42px;
 }
 
 
@@ -154,11 +159,6 @@ h2 {
 	width: 240px;
 	margin: 2em;
 
-}
-
-
-#intro_end {
-	/*float: right;*/
 }
 
 
