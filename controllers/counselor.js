@@ -17,7 +17,16 @@ exports.intro = function(req, res) {
 };
 
 exports.add = function(req, res) {
-	res.render('add.html');
+if (!req.user) {
+		console.log('No user currently logged-in')
+		res.render('view.html', {
+			foods: [],
+			message: 'You must log-in to store and view your foods'
+		})
+	}
+	else {
+		res.render('add.html');
+		}
 }
 
 exports.view = function(req, res) {
