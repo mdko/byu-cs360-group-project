@@ -28,10 +28,11 @@
 					<div class="foodentry">
 						<div class="fooditem">
 							<%= entry.values.food %><br />
-							<%= entry.values.amount %> <%= entry.values.measurement %>
+							<%= entry.values.amount %> 
+              <%= entry.values.measurement %>
 						</div>
 						<div class="fooddetails">
-							Expires <%= entry.values.expirationDate %>.<br />
+							Expires: <%= entry.values.expirationDate %>.<br />
 							Current location: <%= entry.values.storageLocation %>
 						</div>
 						<div class="foodedit">
