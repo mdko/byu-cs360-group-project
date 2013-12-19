@@ -54,14 +54,27 @@ exports.schedules = function(req, res) {
 /*
  * POST
  */
+exports.edititem = function(req, res) {
+
+}
+
+exports.removeitem = function(req, res) {
+	res.render('view.html');
+}
+
+exports.addbarcode = function(req, res) {
+	//Do computation here by parsing information from req object
+	
+}
+
 exports.additem = function(req, res) {
 	if (!req.user) {
-		res.render()
+		res.render('add.html')
 	} else {
 		console.log(req);
 		db.FacebookUser.find( {facebookid: req.user.facebookid} ).complete(function(err, user) {
 			if (!err && user) {
-
+				console.log()
 				var food = db.StoredFood.create({
 					food: req.body.food,
 			 		expirationDate: req.body.expiration,	// TODO fix this to Datetime (mysql) or Timestamp (postgresql)

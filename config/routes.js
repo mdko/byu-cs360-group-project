@@ -15,6 +15,9 @@ module.exports = function (app, passport) {
 
 	// POSTs
 	app.post('/add', counselor.additem);
+	app.post('/edititem', counselor.edititem);
+	app.post('/removeitem', counselor.removeitem);
+	app.post('/addbarcode', counselor.addbarcode);
 
 	/************************************************************************
 	 * Facebook
