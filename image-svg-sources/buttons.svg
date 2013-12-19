@@ -52,7 +52,7 @@
        x2="-97"
        y2="870.36212"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(0.0060241,0,0,1,-96.415663,0)" />
+       gradientTransform="matrix(0.0060241,0,0,1.047619,-96.415663,-43.445815)" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -62,14 +62,14 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.979899"
-     inkscape:cx="85.901921"
-     inkscape:cy="78.090987"
+     inkscape:cx="90.48394"
+     inkscape:cy="107.46235"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:snap-page="true"
      inkscape:window-width="1366"
-     inkscape:window-height="693"
+     inkscape:window-height="694"
      inkscape:window-x="0"
      inkscape:window-y="25"
      inkscape:window-maximized="1"
@@ -103,9 +103,9 @@
        style="fill:url(#linearGradient3802);fill-opacity:1;stroke:none"
        id="rect3782"
        width="1"
-       height="42"
+       height="44"
        x="-97"
-       y="870.36212"
+       y="868.36212"
        ry="0"
        inkscape:export-filename="/home/ansq/School/13F/CS360/WebApp/cs360-group-project/public/images/navbarback.png"
        inkscape:export-xdpi="90"
