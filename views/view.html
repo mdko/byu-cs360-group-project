@@ -27,6 +27,7 @@
 				<% foods.forEach(function(entry) { %>
 					<div class="foodentry">
 						<div class="fooditem">
+              <font color="<%= entry.values.color %>">
 							Food type: <%= entry.values.food %>
 							<%= entry.values.amount %> 
               <%= entry.values.measurement %>
@@ -39,6 +40,7 @@
                   <input type="hidden" name ="id" value = <%= entry.values.id %> />
                   <input type="submit" name="button2" value = "remove" class ="navbutton"/>
               </form>
+              </font>
 						</div>
 					</div>
 				<% }) %>

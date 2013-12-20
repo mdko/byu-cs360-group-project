@@ -46,6 +46,40 @@ exports.view = function(req, res) {
 		console.log('Getting saved foods for logged-in user ' + req._passport.session.user)
 		//console.log('Getting saved foods for logged-in user ' + req.user.facebookid)
 		db.StoredFood.findAll( {where: {FacebookUserId: req._passport.session.user} }).success(function(foods) {
+			var today = new Date();
+			var dd = today.getDate();
+			var mm = today.getMonth()+1;
+			var year = today.getFullYear();
+			for (var i=0; i<foods.length;i++)
+			{
+			var str = foods[i].values.expirationDate;
+			var result = str.split("/");
+			console.log(foods[i].values.expirationDate);
+			if(year > result[2])
+			{
+				console.log("AHA!");
+				console.log(foods[i].values.color);
+				foods[i].color = 'red';
+			}
+			else if(year == result[2] && mm > result[0])
+			{
+				console.log("AHA!");
+				console.log(foods[i].values.color);
+				foods[i].color = 'red';
+				console.log(foods[i].values.color);
+			}
+			else if(year == result[2] && mm == result[0] && dd > result[1])
+			{
+				console.log("AHA!");
+				console.log(foods[i].values.color);
+				foods[i].color = 'red';
+				console.log(foods[i].values.color);
+			}
+			console.log(result[0]);
+			console.log(result[1]);
+			console.log(result[2]);
+			}
+
 			res.render('view.html', {
 				foods: foods,
 				message: ''
@@ -77,24 +111,10 @@ exports.edit = function(req, res){
 
 	db.StoredFood.destroy({id: req.body.id}); //amount: req.body.amount
 
-	console.log('Getting saved foods for logged-in user')
-		db.StoredFood.findAll( {where: {FacebookUserId: req._passport.session.user} }).success(function(foods) {
-		//console.log(foods);
-			res.render('view.html', {
-				foods: foods,
-				message: ''
-			})
-		})
-		db.StoredFood.findAll( {where: {FacebookUserId: req._passport.session.user} }).success(function(foods) {
-		//console.log(foods);
-			res.render('view.html', {
-				foods: foods,
-				message: ''
-			})
-		})
+	res.render('update.html');
 	}
 	else if(req.body.button1 == "edit"){
-	db.StoredFood.findAll( {where: {FacebookUserId: req._passport.session.user, food: req.body.food } }).success(function(foods) {
+	db.StoredFood.findAll( {where: {FacebookUserId: req._passport.session.user, id: req.body.id } }).success(function(foods) {
 		console.log(foods);
 			res.render('edit.html', {
 				foods: foods, message: '' });
@@ -119,12 +139,7 @@ exports.edit = function(req, res){
 				});
 			}
 		});
-		db.StoredFood.findAll( {where: {FacebookUserId: req._passport.session.user} }).success(function(foods) {
-			res.render('view.html', {
-				foods: foods,
-				message: ''
-			})
-		})
+		res.render('update.html');
 	}
 }
 
@@ -189,6 +204,10 @@ exports.additem = function(req, res) {
 	console.log("test");
 	if (!req._passport.session.user) {
 		res.render('add.html')
+	}
+	else if(req.body.food == "" || req.body.amount == "" || req.body.location == ""){
+		console.log("Empty info");
+		res.render('add.html')
 	} else {
 		console.log("req.body");
 		console.log(req.body);
@@ -207,14 +226,15 @@ exports.additem = function(req, res) {
 			 		amount: req.body.amount,
 			 		measurement: req.body.unit,
 			 		storageLocation: req.body.location,
+					color: req.body.color,
 			 		FacebookUserId: fbuser.facebookid
 				}).success(function(john) {
   					console.log('Saved foods to table');
 				});
 			}
 		});
+		res.render('update.html')	// TODO either update something on the screen or tell the user it was successfully saved (add something to the response?)
 	}
-	res.render('add.html')	// TODO either update something on the screen or tell the user it was successfully saved (add something to the response?)
 }
 
 // exports.googlecallback = function(req, res){
