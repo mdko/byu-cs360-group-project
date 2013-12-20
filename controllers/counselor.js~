@@ -141,6 +141,9 @@ exports.additem = function(req, res) {
 	if (!req.user) {
 		res.render('add.html')
 	} else {
+<<<<<<< HEAD
+		//	console.log(req);
+=======
 		console.log("req.body");
 		console.log(req.body);
 		console.log("req.body");
@@ -148,6 +151,7 @@ exports.additem = function(req, res) {
 		console.log(req.body.unit);
 		console.log(req.body.location);
 		//console.log(req);
+>>>>>>> c53a204dc63d4a7a51f40cd36027dec308b64075
 		db.FacebookUser.find( {facebookid: req.user.facebookid} ).complete(function(err, user) {
 			if (!err && user) {
 				console.log()

@@ -57,7 +57,7 @@ h2 {
 }
 
 .fooddetails {
-	/*float:center; center is not a valid value for float*/
+	float: left
 	margin: 10px;
 	padding: 10px;
 }
@@ -144,7 +144,7 @@ h2 {
 
 .navbutton {
 	border: 1px solid black;
-	padding: .5em;
+	padding: 9px 10px 10px 10px;
 	margin: 3pt;
 	background-image: url("/images/navbarback.png");
 	color: white;
@@ -164,6 +164,11 @@ h2 {
 
 img {
 	vertical-align: bottom;
+}
+
+
+.imgtop {
+	vertical-align: top;
 }
 
 

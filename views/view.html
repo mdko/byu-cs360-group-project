@@ -27,16 +27,17 @@
 				<% foods.forEach(function(entry) { %>
 					<div class="foodentry">
 						<div class="fooditem">
-							<%= entry.values.food %><br />
-							<%= entry.values.amount %> <%= entry.values.measurement %>
-						</div>
-						<div class="fooddetails">
-							Expires <%= entry.values.expirationDate %>.<br />
+							Food type: <%= entry.values.food %>
+							<%= entry.values.amount %> 
+              <%= entry.values.measurement %>
+							Expires: <%= entry.values.expirationDate %>.
 							Current location: <%= entry.values.storageLocation %>
-						</div>
-						<div class="foodedit">
-							<a href="editfood" class="navbutton">Edit</a>
-							<a href="#remove" class="navbutton">Remove</a>
+              <form id = "editform" action = "#" method="post">
+              <input type="submit" name="button1" value = "edit" class ="navbutton"/>
+                <input type="hidden" name ="food" value = <%= entry.values.food %> />
+                <input type="hidden" name ="amount" value = <%= entry.values.amount %> /> 
+              <input type="submit" name="button2" value = "remove" class ="navbutton"/>
+              </form>
 						</div>
 					</div>
 				<% }) %>
