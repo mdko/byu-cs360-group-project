@@ -13,7 +13,7 @@ module.exports = function (app, passport, config) {
 		app.set('views', config.root + '/views');
 		app.engine('html', require('ejs').renderFile);
 		//app.set('view engine', 'jade')	// wish we had done it with jade instead of html
-		app.use(express.favicon());
+		app.use(express.favicon(path.join(__dirname, '/../public/images/favicon.ico')));
 		app.use(express.logger('dev'));
 		app.use(express.json());			// equivalent to app.use(express.bodyParser())
 		app.use(express.urlencoded());		// "	"
