@@ -52,32 +52,22 @@ exports.view = function(req, res) {
 			var year = today.getFullYear();
 			for (var i=0; i<foods.length;i++)
 			{
-			var str = foods[i].values.expirationDate;
-			var result = str.split("/");
-			console.log(foods[i].values.expirationDate);
-			if(year > result[2])
-			{
-				console.log("AHA!");
-				console.log(foods[i].values.color);
-				foods[i].color = 'red';
-			}
-			else if(year == result[2] && mm > result[0])
-			{
-				console.log("AHA!");
-				console.log(foods[i].values.color);
-				foods[i].color = 'red';
-				console.log(foods[i].values.color);
-			}
-			else if(year == result[2] && mm == result[0] && dd > result[1])
-			{
-				console.log("AHA!");
-				console.log(foods[i].values.color);
-				foods[i].color = 'red';
-				console.log(foods[i].values.color);
-			}
-			console.log(result[0]);
-			console.log(result[1]);
-			console.log(result[2]);
+				var str = foods[i].values.expirationDate;
+				var result = str.split("/");
+				console.log(foods[i].values.expirationDate);
+				if(year > result[2])
+				{
+					foods[i].color = 'red';
+				}
+				else if(year == result[2] && mm > result[0])
+				{
+					foods[i].color = 'red';
+				}
+				else if(year == result[2] && mm == result[0] && dd > result[1])
+				{
+					foods[i].color = 'red';
+				}
+
 			}
 
 			res.render('view.html', {
