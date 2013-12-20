@@ -8,8 +8,8 @@ module.exports = function(sequelize, DataTypes) {
     	allowNull: false
     },
     expirationDate: {
-    	type: DataTypes.DATE,
-    	allowNull: false
+    	type: DataTypes.TEXT,
+    	allowNull: true
     },
     amount: {
     	type: DataTypes.FLOAT,
