@@ -29,7 +29,7 @@ exports.view = function(req, res) {
 			message: 'You must log-in to store and view your foods'
 		})
 	} else {
-		console.log('Getting saved foods for logged-in user')
+		console.log('Getting saved foods for logged-in user ' + req.user.facebookid)
 		db.StoredFood.findAll( {where: {FacebookUserId: req.user.facebookid} }).success(function(foods) {
 			res.render('view.html', {
 				foods: foods,
@@ -64,14 +64,14 @@ exports.removeitem = function(req, res) {
 
 exports.addbarcode = function(req, res) {
 	//Do computation here by parsing information from req object
-	
+
 }
 
 exports.additem = function(req, res) {
 	if (!req.user) {
 		res.render('add.html')
 	} else {
-		console.log(req);
+		//	console.log(req);
 		db.FacebookUser.find( {facebookid: req.user.facebookid} ).complete(function(err, user) {
 			if (!err && user) {
 				console.log()
