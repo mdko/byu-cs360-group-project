@@ -35,8 +35,9 @@
               <form id = "editform" action = "#" method="post">
               <input type="submit" name="button1" value = "edit" class ="navbutton"/>
                 <input type="hidden" name ="food" value = <%= entry.values.food %> />
-                <input type="hidden" name ="amount" value = <%= entry.values.amount %> /> 
-              <input type="submit" name="button2" value = "remove" class ="navbutton"/>
+                <input type="hidden" name ="amount" value = <%= entry.values.amount %> />
+                  <input type="hidden" name ="id" value = <%= entry.values.id %> />
+                  <input type="submit" name="button2" value = "remove" class ="navbutton"/>
               </form>
 						</div>
 					</div>

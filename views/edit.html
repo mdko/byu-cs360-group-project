@@ -49,10 +49,10 @@
       <% foods.forEach(function(entry) { %>
 
         <label for="food">Food:</label>
-        <input type="text" name="food" id="food"  value ="" <%= entry.values.amount %> />
+        <input type="text" name="food" id="food"  value = "<%= entry.values.food %>" />
         <br />
         <label for="amount">Amount:</label>
-        <input type="number" name="amount" id="amount" value ="" <%= entry.values.amount %> />
+        <input type="number" name="amount" id="amount" value ="<%= entry.values.amount %>" />
         <select id="units" onchange="change()">
           <option value="pounds">pounds</option>
           <option value="gallons">gallons</option>
@@ -60,7 +60,7 @@
           <option value="ounces">ounces</option>
           <option value="liters">liters</option>
         </select>
-        <input type="hidden" id="unit" name="unit" value ="" <%= entry.values.amount %> />
+        <input type="hidden" id="unit" name="unit" value ="<%= entry.values.unit %>" />
         <br />
         <!--should be type="date", but that's not widely supported yet-->
         <!--<input type="text" name="expiry" id="expiry" placeholder="1 Jan 1900" pattern="[0-3]?[0-9] (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) ([0-9]{2}|[0-9]{4})" />
@@ -71,12 +71,13 @@
 				<input type="number" name="exyear" id="exyear" placeholder="year" min="0" max="9999" />
 				<br /> -->
         <label for="location">Storage Location:</label>
-        <input type="text" name="location" id="location" value ="" <%= entry.values.amount %> />
+        <input type="text" name="location" id="location" value ="<%= entry.values.storageLocation %>" />
         <br />
         <label for="datepicker">Expiration Date:</label>
-        <input type="text" name="expiration" id="datepicker" value ="" <%= entry.values.amount %> />
+        <input type="text" name="expiration" id="datepicker" value ="<%= entry.values.expirationDate %>" />
         <br />
-        <input type="submit" value="Add Food" />
+        <input type="hidden" name ="id" value = <%= entry.values.id %> />
+        <input type="submit" name ="button3" value="Update" />
         <% }) %>
            </form>
       
