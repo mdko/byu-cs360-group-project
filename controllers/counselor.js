@@ -18,7 +18,7 @@ exports.intro = function(req, res) {
 };
 
 exports.add = function(req, res) {
-if (!req.user) {
+if (!req._passport.session.user) { //was if(!req.user)
 		console.log('No user currently logged-in')
 		res.render('view.html', {
 			foods: [],
@@ -31,16 +31,21 @@ if (!req.user) {
 }
 
 exports.view = function(req, res) {
+
 	///Query database for foods	
-	if (!req.user) {
+	if (!req._passport.session.user) {
 		console.log('No user currently logged-in')
 		res.render('view.html', {
 			foods: [],
 			message: 'You must log-in to store and view your foods'
 		})
 	} else {
-		console.log('Getting saved foods for logged-in user ' + req.user.facebookid)
-		db.StoredFood.findAll( {where: {FacebookUserId: req.user.facebookid} }).success(function(foods) {
+		// TODO: I don't think req.user.facebookid is what we want to look at, since it always remains one id
+		// I think we want req._passport.session.user, which unfortunately isn't the exact way you're supposed
+		// to do it, but it works...
+		console.log('Getting saved foods for logged-in user ' + req._passport.session.user)
+		//console.log('Getting saved foods for logged-in user ' + req.user.facebookid)
+		db.StoredFood.findAll( {where: {FacebookUserId: req._passport.session.user} }).success(function(foods) {
 			res.render('view.html', {
 				foods: foods,
 				message: ''
@@ -73,14 +78,14 @@ exports.edit = function(req, res){
 	db.StoredFood.destroy({food: req.body.food, amount: req.body.amount});
 
 	console.log('Getting saved foods for logged-in user')
-		db.StoredFood.findAll( {where: {FacebookUserId: req.user.facebookid} }).success(function(foods) {
+		db.StoredFood.findAll( {where: {FacebookUserId: req._passport.session.user} }).success(function(foods) {
 		//console.log(foods);
 			res.render('view.html', {
 				foods: foods,
 				message: ''
 			})
 		})
-		db.StoredFood.findAll( {where: {FacebookUserId: req.user.facebookid} }).success(function(foods) {
+		db.StoredFood.findAll( {where: {FacebookUserId: req._passport.session.user} }).success(function(foods) {
 		//console.log(foods);
 			res.render('view.html', {
 				foods: foods,
@@ -89,7 +94,7 @@ exports.edit = function(req, res){
 		})
 	}
 	else if(req.body.button1 == "edit"){
-	db.StoredFood.findAll( {where: {FacebookUserId: req.user.facebookid} }).success(function(foods) {
+	db.StoredFood.findAll( {where: {FacebookUserId: req._passport.session.user} }).success(function(foods) {
 		console.log(foods);
 			res.render('view.html', {
 				foods: foods,
@@ -108,12 +113,12 @@ exports.edititem = function(req, res) {
 }
 
 exports.removeitem = function(req, res) {
-if (!req.user) {
+if (!rreq._passport.session.user) {
 		res.render('add.html')
 	} else {
 		console.log(req);
-		db.FacebookUser.find( {facebookid: req.user.facebookid} ).complete(function(err, user) {
-			if (!err && user) {
+		db.FacebookUser.find( {where: {facebookid: req._passport.session.user}} ).complete(function(err, fbuser) {
+			if (!err && fbuser) {
 				console.log()
 				var food = db.StoredFood.create({
 					food: req.body.food,
@@ -121,7 +126,7 @@ if (!req.user) {
 			 		amount: req.body.amount,
 			 		measurement: req.body.unit,
 			 		storageLocation: req.body.location,
-			 		FacebookUserId: user.facebookid
+			 		FacebookUserId: fbuser.facebookid
 				}).success(function(john) {
   					console.log('Removed food item from table');
 				});
@@ -138,7 +143,7 @@ exports.addbarcode = function(req, res) {
 
 exports.additem = function(req, res) {
 	console.log("test");
-	if (!req.user) {
+	if (!req._passport.session.user) {
 		res.render('add.html')
 	} else {
 		console.log("req.body");
@@ -148,16 +153,17 @@ exports.additem = function(req, res) {
 		console.log(req.body.unit);
 		console.log(req.body.location);
 		//console.log(req);
-		db.FacebookUser.find( {facebookid: req.user.facebookid} ).complete(function(err, user) {
-			if (!err && user) {
-				console.log()
+		console.log(req._passport.session.user)
+		db.FacebookUser.find( {where: {facebookid: req._passport.session.user}}).complete(function(err, fbuser) { // needed to add {where: } clause, was getting wrong user each time
+			if (!err && fbuser) {
+				console.log('User found: ' + fbuser.facebookid)
 				var food = db.StoredFood.create({
 					food: req.body.food,
 			 		expirationDate: req.body.expiration,	// TODO fix this to Datetime (mysql) or Timestamp (postgresql)
 			 		amount: req.body.amount,
 			 		measurement: req.body.unit,
 			 		storageLocation: req.body.location,
-			 		FacebookUserId: user.facebookid
+			 		FacebookUserId: fbuser.facebookid
 				}).success(function(john) {
   					console.log('Saved foods to table');
 				});
@@ -174,7 +180,7 @@ exports.additem = function(req, res) {
 //TODO review difference between redirecting and rendering here...
 //We want to save the fact that the user is now authenticated
 exports.facebookcallback = function(req, res) {
-	res.redirect('/home?id='+req.user.facebookid)
+	res.redirect('/home?id='+req.user.facebookid)	// don't think I need to change this req._passport.session.user
 	//res.send(req.user);	// user information is now stored in this!
 	// res.render('home.html')
 }
