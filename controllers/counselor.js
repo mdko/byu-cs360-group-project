@@ -46,6 +46,30 @@ exports.view = function(req, res) {
 		console.log('Getting saved foods for logged-in user ' + req._passport.session.user)
 		//console.log('Getting saved foods for logged-in user ' + req.user.facebookid)
 		db.StoredFood.findAll( {where: {FacebookUserId: req._passport.session.user} }).success(function(foods) {
+			var today = new Date();
+			var dd = today.getDate();
+			var mm = today.getMonth()+1;
+			var year = today.getFullYear();
+			for (var i=0; i<foods.length;i++)
+			{
+				var str = foods[i].values.expirationDate;
+				var result = str.split("/");
+				console.log(foods[i].values.expirationDate);
+				if(year > result[2])
+				{
+					foods[i].color = 'red';
+				}
+				else if(year == result[2] && mm > result[0])
+				{
+					foods[i].color = 'red';
+				}
+				else if(year == result[2] && mm == result[0] && dd > result[1])
+				{
+					foods[i].color = 'red';
+				}
+
+			}
+
 			res.render('view.html', {
 				foods: foods,
 				message: ''
@@ -75,41 +99,66 @@ exports.edit = function(req, res){
  //console.log(req.body);
 	if(req.body.button2 == "remove"){
 
-	db.StoredFood.destroy({food: req.body.food, amount: req.body.amount});
+	db.StoredFood.destroy({id: req.body.id}); //amount: req.body.amount
 
-	console.log('Getting saved foods for logged-in user')
-		db.StoredFood.findAll( {where: {FacebookUserId: req._passport.session.user} }).success(function(foods) {
-		//console.log(foods);
-			res.render('view.html', {
-				foods: foods,
-				message: ''
-			})
-		})
-		db.StoredFood.findAll( {where: {FacebookUserId: req._passport.session.user} }).success(function(foods) {
-		//console.log(foods);
-			res.render('view.html', {
-				foods: foods,
-				message: ''
-			})
-		})
+	res.render('update.html');
 	}
 	else if(req.body.button1 == "edit"){
-	db.StoredFood.findAll( {where: {FacebookUserId: req._passport.session.user} }).success(function(foods) {
+	db.StoredFood.findAll( {where: {FacebookUserId: req._passport.session.user, id: req.body.id } }).success(function(foods) {
 		console.log(foods);
-			res.render('view.html', {
-				foods: foods,
-				message: ''
-			})
+			res.render('edit.html', {
+				foods: foods, message: '' });
 		})
 	}
-	else{
-	console.log(req.body.button);
-	console.log("Well, this sucks.");
+	else if (req.body.button3 == "Update"){
+	db.StoredFood.destroy({id: req.body.id}); // Ok, this should remove the old one, allowing us to insert the new one!
+
+
+	db.FacebookUser.find( {where: {facebookid: req._passport.session.user}}).complete(function(err, fbuser) { // needed to add {where: } clause, was getting wrong user each time
+			if (!err && fbuser) {
+				console.log('User found: ' + fbuser.facebookid)
+				var food = db.StoredFood.create({
+					food: req.body.food,
+			 		expirationDate: req.body.expiration,	// TODO fix this to Datetime (mysql) or Timestamp (postgresql)
+			 		amount: req.body.amount,
+			 		measurement: req.body.unit,
+			 		storageLocation: req.body.location,
+			 		FacebookUserId: fbuser.facebookid
+				}).success(function(john) {
+  					console.log('Saved foods to table');
+				});
+			}
+		});
+		res.render('update.html');
 	}
 }
 
 exports.edititem = function(req, res) {
-	res.render('view.html');
+db.StoredFood.destroy({id: req.body.id}); // Ok, this should remove the old one, allowing us to insert the new one!
+
+
+db.FacebookUser.find( {where: {facebookid: req._passport.session.user}}).complete(function(err, fbuser) { // needed to add {where: } clause, was getting wrong user each time
+			if (!err && fbuser) {
+				console.log('User found: ' + fbuser.facebookid)
+				var food = db.StoredFood.create({
+					food: req.body.food,
+			 		expirationDate: req.body.expiration,	// TODO fix this to Datetime (mysql) or Timestamp (postgresql)
+			 		amount: req.body.amount,
+			 		measurement: req.body.unit,
+			 		storageLocation: req.body.location,
+			 		FacebookUserId: fbuser.facebookid
+				}).success(function(john) {
+  					console.log('Saved foods to table');
+				});
+			}
+		});
+		db.StoredFood.findAll( {where: {FacebookUserId: req._passport.session.user} }).success(function(foods) {
+			res.render('view.html', {
+				foods: foods,
+				message: ''
+			})
+		})
+
 }
 
 exports.removeitem = function(req, res) {
@@ -145,6 +194,10 @@ exports.additem = function(req, res) {
 	console.log("test");
 	if (!req._passport.session.user) {
 		res.render('add.html')
+	}
+	else if(req.body.food == "" || req.body.amount == "" || req.body.location == ""){
+		console.log("Empty info");
+		res.render('add.html')
 	} else {
 		console.log("req.body");
 		console.log(req.body);
@@ -163,14 +216,15 @@ exports.additem = function(req, res) {
 			 		amount: req.body.amount,
 			 		measurement: req.body.unit,
 			 		storageLocation: req.body.location,
+					color: req.body.color,
 			 		FacebookUserId: fbuser.facebookid
 				}).success(function(john) {
   					console.log('Saved foods to table');
 				});
 			}
 		});
+		res.render('update.html')	// TODO either update something on the screen or tell the user it was successfully saved (add something to the response?)
 	}
-	res.render('add.html')	// TODO either update something on the screen or tell the user it was successfully saved (add something to the response?)
 }
 
 // exports.googlecallback = function(req, res){

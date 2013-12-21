@@ -23,6 +23,10 @@ module.exports = function(sequelize, DataTypes) {
     storageLocation: {
     	type: DataTypes.TEXT,
     	allowNull: true
-    }
+    },
+	color:{
+		type: DataTypes.TEXT,
+		default: 'red'
+	}
   });
 };

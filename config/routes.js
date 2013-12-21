@@ -13,11 +13,12 @@ module.exports = function (app, passport) {
 	app.get('/login', counselor.loginpage);
 	app.get('/schedules', counselor.schedules);
 	app.get('/editfood', counselor.edit);
+	app.get('/update', counselor.edit);
 
 	// POSTs
 	app.post('/view', counselor.alteritem)
 	app.post('/add', counselor.additem);
-	app.post('/edititem', counselor.edititem);
+	app.post('/edit', counselor.edititem);
 	app.post('/removeitem', counselor.removeitem);
 	app.post('/addbarcode', counselor.addbarcode);
 

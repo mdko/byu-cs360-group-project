@@ -23,10 +23,12 @@
 
 		<div id="maincontainer">
 			<h1>Food Storage Contents</h1>
+      <h1 <font style="font-size: 22px;">Items in Red Indicate Expired Food</h1>
 				<%= message %>
 				<% foods.forEach(function(entry) { %>
 					<div class="foodentry">
 						<div class="fooditem">
+              <font color="<%= entry.values.color %>">
 							Food type: <%= entry.values.food %>
 							<%= entry.values.amount %> 
               <%= entry.values.measurement %>
@@ -35,9 +37,11 @@
               <form id = "editform" action = "#" method="post">
               <input type="submit" name="button1" value = "edit" class ="navbutton"/>
                 <input type="hidden" name ="food" value = <%= entry.values.food %> />
-                <input type="hidden" name ="amount" value = <%= entry.values.amount %> /> 
-              <input type="submit" name="button2" value = "remove" class ="navbutton"/>
+                <input type="hidden" name ="amount" value = <%= entry.values.amount %> />
+                  <input type="hidden" name ="id" value = <%= entry.values.id %> />
+                  <input type="submit" name="button2" value = "remove" class ="navbutton"/>
               </form>
+              </font>
 						</div>
 					</div>
 				<% }) %>
